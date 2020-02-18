@@ -1,0 +1,290 @@
+
+*
+{
+    padding:0;
+    margin:0;
+}
+
+
+
+
+/* Header */
+div > h1 {
+    padding-bottom: 50px;
+    text-align: center;
+    color: white;
+    font-size: 7vw;
+}
+
+header {
+    display: grid;
+    background-color:#730441;
+}
+
+
+#logoimg {
+    width: 25%;
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+
+nav {
+    width: 100%;
+    justify-self: end;
+}
+nav > ul > li > a
+{
+    font-size: 1.5vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    
+}
+
+nav > ul > li
+{
+    display: inline-block;
+    padding: 32px 32px;
+    justify-self: end;
+}
+
+
+
+
+#promoImg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* Category and Best Seller Grids */
+
+div > div > img {
+    max-width: 100%;
+    margin-top: 10%;
+}
+
+#productBody {
+
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+div > div > div > h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #59788F;
+    font-size: 2vw;
+    padding: 5px 10px;
+    margin-bottom: auto;
+}
+
+.HMCatLink > a {
+    text-decoration: none;
+    font-size: 2vw;
+    color: #730441;
+}
+
+
+#productHead, #bestSellerHead {
+    padding: 32px 32px;
+    color: #59788F;
+    font-size: 3vw;
+    padding-top: 100px;
+    padding-bottom: 20px;
+}
+
+.grid-category {
+    
+    max-width: 100%;
+    display: inline-grid;
+    grid-template-columns: repeat(4, minmax(10%, 25%));
+    padding-bottom: 10%;
+    background: #FFF;
+    justify-self: center;
+    
+
+}
+
+
+.grid-bestSeller {
+
+    max-width: 100%;
+    display: inline-grid;
+    grid-template-columns: repeat(4, minmax(25%, 1fr));
+
+    background: #FFF;
+    justify-self: center;
+    justify-content: space-evenly;
+
+}
+
+
+.item {
+
+    padding: 10%;
+}
+
+
+p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2vw;
+}
+
+main {
+    background-color: #F4F3F4;
+    padding-bottom: 100px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 50px;
+}
+
+/* Products Page */
+
+.productPage {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 1rem;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #fff;
+}
+
+
+.menu {
+    margin: 15%;
+}
+
+.menu1 {
+    font-size: 2.5vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #59788F;
+}
+
+.cat1 {
+    font-size: 2vw;
+}
+
+.productPage > .menu > a {
+    font-size: 1.5vw;
+}
+
+.menu > div > ul {
+    list-style: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menu > div > ul > li {
+    margin: 13px 0;
+}
+
+.menu > div > ul > li > a {
+    text-decoration: none;
+    font-size: 1.2vw;
+    color: #89A8C0
+}
+
+
+.products {
+    display: inline-grid;
+    grid-template-columns: repeat(3, minmax(25%, 1fr));
+    grid-template-rows: repeat(2, minmax(25%, 1fr));
+    grid-gap: 0.5rem;
+    justify-content: center;
+    margin: 10% 5%;
+}
+
+.products > .item > p > a {
+
+    font-size: 1.3vw;
+    color: #89A8C0;
+    text-decoration: none;
+    text-align: left;
+}
+
+/* REGISTRATION PAGE */
+
+.regForm {
+    max-width: 500px;
+    background-color: #89A8C0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 32px 32px;
+}
+
+input[type=text], input[type=password], input[type=submit]{
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    resize: vertical;
+    font-size: 1vw;
+ }
+
+ label {
+     font-size: 1.3vw;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+
+.regForm > form {
+    margin: 10%;
+}
+
+.regForm > h2 {
+    text-align: center;
+    font-size: 2vw;
+    color: white;
+}
+
+.regForm > p {
+    text-align: center;
+}
+
+.regForm > p > a {
+    text-decoration: none;
+}
+
+/*LOGIN PAGE*/
+.logForm {
+    max-width: 500px;
+    background-color: #89A8C0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 32px 32px;
+}
+
+
+.logForm > form {
+    margin: 10%;
+}
+
+.logForm > h2 {
+    text-align: center;
+    font-size: 2vw;
+    color: white;
+}
+
+.logForm > p {
+    text-align: center;
+}
+
+.logForm > p > a {
+    text-decoration: none;
+}
+
+footer {
+    background-color: #730441;
+    padding: 30px;
+    color: white;
+    font-size: 1.5vw;
+    text-align: right;
+
+}

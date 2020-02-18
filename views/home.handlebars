@@ -1,0 +1,52 @@
+<div class = "promo"> 
+    <img id = "promoImg" src="/img/promoProduct.png" alt="Promo Image">
+</div>
+
+<div id=productBody>
+    <h2 id=productHead>Product Categories</h2>
+
+        <div class = "grid-category">
+
+            {{#each category}}
+                <div class = "item">
+                    <h3>{{this.title}}</h3>
+                </div>
+            {{/each}}
+            {{#each category}}
+                <div class = "item">    
+                    <img id = "catImg" src="{{this.image}}" alt="Category Images">
+                </div>
+            {{/each}}
+            {{#each category}}
+                <div class = "item">
+                    <p class ="HMCatLink"><a href="">{{this.link}}</a></p>
+                </div>
+            {{/each}}
+            
+        </div>
+
+    <h2 id=bestSellerHead>Best Sellers</h2>
+
+        <div class = "grid-bestSeller">
+
+ 
+            {{#each bestSellers}}
+                <div class = "item">    
+                    <img id = "catImg" src="{{this.image}}" alt="Category Images">
+                </div>
+            {{/each}}
+            
+            {{#each bestSellers}}
+                <div class = "item">
+                    <h3>{{this.price}}</h3>
+                </div>
+            {{/each}}
+
+            {{#each bestSellers}}
+            <div class = "item">
+                <p class="HMBsDesc">{{this.description}}</p>
+            </div>    
+            {{/each}}
+            
+        </div>
+</div>
