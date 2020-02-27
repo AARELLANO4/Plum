@@ -253,7 +253,6 @@ input[type=text], input[type=password], input[type=submit]{
 .products {
     display: inline-grid;
     grid-template-columns: repeat(1, minmax(25%, 1fr));
-    
     grid-gap: 0.5rem;
     justify-content: center;
     margin: 10% 5%;
@@ -407,6 +406,17 @@ input[type=text], input[type=password], input[type=submit]{
     text-align: center;
     font-size: 2vw;
     color: white;
+}
+
+/* PRODUCTS PAGE */
+
+.products {
+    display: inline-grid;
+    grid-template-columns: repeat(3, minmax(25%, 1fr));
+    grid-template-rows: repeat(2, minmax(25%, 1fr));
+    grid-gap: 0.5rem;
+    justify-content: center;
+    margin: 10% 5%;
 }
 
 }
