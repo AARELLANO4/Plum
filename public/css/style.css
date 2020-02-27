@@ -220,19 +220,6 @@ input[type=text], input[type=password], input[type=submit]{
     margin: 15%;
 }
 
-.menu1 {
-    font-size: 2.5vw;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #59788F;
-}
-
-.cat1 {
-    font-size: 2vw;
-}
-
-.productPage > .menu > a {
-    font-size: 1.5vw;
-}
 
 .menu > div > ul {
     list-style: none;
@@ -243,9 +230,23 @@ input[type=text], input[type=password], input[type=submit]{
     margin: 13px 0;
 }
 
+.menu1 {
+    font-size: 3vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #59788F;
+}
+
+.cat1 {
+    font-size: 4vw;
+}
+
+.productPage > .menu > a {
+    font-size: 3vw;
+}
+
 .menu > div > ul > li > a {
     text-decoration: none;
-    font-size: 1.2vw;
+    font-size: 3vw;
     color: #89A8C0
 }
 
@@ -260,7 +261,7 @@ input[type=text], input[type=password], input[type=submit]{
 
 .products > .item > p > a {
 
-    font-size: 1.3vw;
+    font-size: 2vw;
     color: #89A8C0;
     text-decoration: none;
     text-align: left;
@@ -417,6 +418,34 @@ input[type=text], input[type=password], input[type=submit]{
     grid-gap: 0.5rem;
     justify-content: center;
     margin: 10% 5%;
+}
+
+.products > .item > p > a {
+
+    font-size: 1.3vw;
+    color: #89A8C0;
+    text-decoration: none;
+    text-align: left;
+}
+
+.menu1 {
+    font-size: 2.5vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #59788F;
+}
+
+.cat1 {
+    font-size: 2vw;
+}
+
+.productPage > .menu > a {
+    font-size: 1.5vw;
+}
+
+.menu > div > ul > li > a {
+    text-decoration: none;
+    font-size: 1.2vw;
+    color: #89A8C0
 }
 
 }
