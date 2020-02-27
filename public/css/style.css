@@ -231,22 +231,22 @@ input[type=text], input[type=password], input[type=submit]{
 }
 
 .menu1 {
-    font-size: 3vw;
+    font-size: 2vw;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #59788F;
 }
 
 .cat1 {
-    font-size: 4vw;
+    font-size: 2vw;
 }
 
 .productPage > .menu > a {
-    font-size: 3vw;
+    font-size: 2vw;
 }
 
 .menu > div > ul > li > a {
     text-decoration: none;
-    font-size: 3vw;
+    font-size: 2vw;
     color: #89A8C0
 }
 
