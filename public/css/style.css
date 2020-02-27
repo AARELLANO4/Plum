@@ -231,22 +231,22 @@ input[type=text], input[type=password], input[type=submit]{
 }
 
 .menu1 {
-    font-size: 2vw;
+    font-size: 1vw;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #59788F;
 }
 
 .cat1 {
-    font-size: 2vw;
+    font-size: 1vw;
 }
 
 .productPage > .menu > a {
-    font-size: 2vw;
+    font-size: 1vw;
 }
 
 .menu > div > ul > li > a {
     text-decoration: none;
-    font-size: 2vw;
+    font-size: 1vw;
     color: #89A8C0
 }
 
@@ -261,7 +261,7 @@ input[type=text], input[type=password], input[type=submit]{
 
 .products > .item > p > a {
 
-    font-size: 2vw;
+    font-size: 3vw;
     color: #89A8C0;
     text-decoration: none;
     text-align: left;
