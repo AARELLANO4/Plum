@@ -6,25 +6,25 @@ const category =
     {
         this.category.push({
             title: `Books & Comics`,
-            image: `/img/PCbooks.jpg`,
+            image: `/img/PCbooks.png`,
             link: `Browse best selling titles`
         });
 
         this.category.push({
             title: `Video Games`,
-            image: `/img/PCvideogames.jpg`,
+            image: `/img/PCvideogames.png`,
             link: `Browse new releases`
         });
 
         this.category.push({
-            title: `Time Pieces & Smart Watches`,
-            image: `/img/PCtimepiece.jpg`,
+            title: `Smart Watches`,
+            image: `/img/PCtimepiece.png`,
             link: `Browse the latest smart watches`
         });
 
         this.category.push({
             title: `Paper & Stationery`,
-            image: `/img/PCstationery.jpg`,
+            image: `/img/PCstationery.png`,
             link: `Browse new arrivals`
         });
     },
