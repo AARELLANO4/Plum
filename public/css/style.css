@@ -231,7 +231,7 @@ input[type=text], input[type=password], input[type=submit]{
 }
 
 .menu1 {
-    font-size: 1vw;
+    font-size: 2vw;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #59788F;
 }
