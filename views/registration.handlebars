@@ -2,31 +2,36 @@
 
 <div class = "regForm">
     <h2>Create an Account:</h2><br>
-    {{#each errors}}
-    <div>{{this}}</div>
-    {{/each}}
+    <div id ="regErrors">
 
+    </div>
     <div>{{success}}</div>
     <form action="/registration" method = "POST" >
                     <div>           
                         <label for="firstName">First name: </label><br>
-                        <input type="text" id="firstName" name="firstName" value={{firstName}}><br><br>
+                        <input type="text" id="firstName" name="firstName" value={{firstName}}><br>
+                        <p>{{fnErr}}</p><br><br>
                     </div>
                     <div>
                         <label for="lastName">Last name:</label><br>
-                        <input type="text" id="lastName" name="lastName" value={{lastName}}><br><br>
+                        <input type="text" id="lastName" name="lastName" value={{lastName}}><br>
+                        <p>{{lnErr}}</p><br><br>
                     </div>
                     <div>
                         <label for="email">Email:</label><br>
-                        <input type="text" id="email" name="email" value={{email}}><br><br>
+                        <input type="text" id="email" name="email" value={{email}}><br>
+                        <p>{{emailErr}}</p><br>
                     </div>
                     <div>
                         <label for="password">Password:</label><br>
-                        <input type="password" id="password" name="password" placeholder="At least 8 characters"><br><br>
+                        <input type="password" id="password" name="password" placeholder="At least 6 characters"><br><br>
                     </div>                     
                     <div>
                         <label for="rePassword">Confirm password:</label><br>
                         <input type="password" id = "rePassword" name="rePassword" ><br><br>
+                        {{#each passwordErr}}
+                            <p>{{this}}</p><br>
+                         {{/each}}
                     </div> 
                     <input type = "submit" value = "Create your Plum account!">
                 </form>
