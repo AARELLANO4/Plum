@@ -128,7 +128,7 @@ router.post("/registration", (req,res)=> {
             // using Twilio SendGrid's v3 Node.js Library
             // https://github.com/sendgrid/sendgrid-nodejs
             const sgMail = require('@sendgrid/mail');
-            sgMail.setApiKey("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");
+            sgMail.setApiKey(process.env.SENDGRID_API_KEY);
             
             const msg = {
             to: `${email}`,
