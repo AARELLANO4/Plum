@@ -116,19 +116,19 @@ router.post("/registration", (req,res)=> {
     }
     else {
         const {firstName,lastName,email} = req.body;
-        res.render("dashboard", {
+       /* res.render("dashboard", {
             title: "Dashboard",
             headerInfo: "Dashboard",
             firstName: firstName,
             lastName: lastName,
             email: email,
             success: `Thank you ${firstName} ${lastName}, for joining Plum! We will send you an email shortly to validate your email address.`
-        });
+        });*/
 
             // using Twilio SendGrid's v3 Node.js Library
             // https://github.com/sendgrid/sendgrid-nodejs
             const sgMail = require('@sendgrid/mail');
-            sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+            sgMail.setApiKey("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");
             
             const msg = {
             to: `${email}`,
