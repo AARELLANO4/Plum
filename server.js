@@ -1,69 +1,29 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const bodyParser = require('body-parser')
 
 // models
-const categoryModel = require("./models/category");
-const bestSellModel = require("./models/bestsellers")
-const productsModel = require("./models/products")
+
 
 const app = express();
 
+// set handlebars as the template engine
 app.engine('handlebars',exphbs());
 app.set('view engine','handlebars');
 
+// static assets
 app.use(express.static("public"));
 
-app.get("/",(req,res) =>{
-    // home page
-    res.render("home",{
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
-        // main.handleBars
-        title: "Home",
-        headerInfo: "Plum",
-        category: categoryModel.getAllCategories(),
-        bestSellers: bestSellModel.getBestSell()
-    });
-
-});
-
-app.get("/products",(req,res) =>{
-    // products page
-    res.render("products",{
-
-        // main.handleBars
-        title: "Products",
-        headerInfo: "Products",
-        products: productsModel.getAllProducts()
-
-    });
+// load controllers
+const generalController = require("./controllers/general");
+app.use("/",generalController);
 
 
-});
-
-app.get("/registration",(req,res)=>{
-    // registration page
-    res.render("registration",{
-
-        // main.handleBars
-        title: "Registration",
-        headerInfo: ""
-    });
-
-});
-
-app.get("/login",(req,res)=>{
-    // login page
-    res.render("login",{
-
-        // main.handleBars
-        title: "Log-in",
-        headerInfo: ""
-    });
-
-
-});
-
-const PORT = process.env.PORT;
+// set up server
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT,()=>{
     console.log("Connected.")
