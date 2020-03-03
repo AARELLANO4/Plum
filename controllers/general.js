@@ -10,6 +10,7 @@ const productsModel = require("../models/products");
 // home route
 router.get("/",(req,res) =>{
     // home page
+
     res.render("home",{
 
         // main.handleBars
@@ -128,7 +129,7 @@ router.post("/registration", (req,res)=> {
             // using Twilio SendGrid's v3 Node.js Library
             // https://github.com/sendgrid/sendgrid-nodejs
             const sgMail = require('@sendgrid/mail');
-            sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+            sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
             
             const msg = {
             to: `${email}`,
@@ -144,7 +145,14 @@ router.post("/registration", (req,res)=> {
             // asynchronous operation 
             sgMail.send(msg)
             .then(()=> {
-                res.redirect("/dashboard");
+                res.render("dashboard", {
+                    title: "Dashboard",
+                    headerInfo: "Dashboard",
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    success: `Thank you ${firstName} ${lastName}, for joining Plum! We will send you an email shortly to validate your email address.`
+                });
             })
             .catch(err=>{
                 console.log(`Error ${err}`);
