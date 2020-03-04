@@ -181,5 +181,14 @@
         padding-top: 20px;
     }
     
-    
+    /*DASHBOARD*/
+    .dashboard {
+        min-width: 700px;
+        display: inline-grid;
+        grid-template-columns: auto auto;
+        grid-gap: 1rem;
+        background-color: white;
+        margin-left: 10%;
+    }
+
     }

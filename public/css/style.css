@@ -306,3 +306,34 @@ footer {
     padding-left: 10px;
     padding-top: 20px;
 }
+
+/* DASHBOARD */
+
+#success {
+    color: #730441;
+    text-align: center;
+}
+
+.dashboard {
+    display: inline-grid;
+    grid-template-columns: repeat(2, minmax(25%, 1fr));
+    grid-gap: 1rem;
+    background-color: white;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dashItem {
+    padding: 20px;
+}
+
+.dashItem > h2 {
+    color: #59788F;
+    padding: 3px;
+}
+
+.dashItem > p > a {
+    color: #730441;
+    text-decoration: none;
+}

@@ -96,10 +96,6 @@ router.post("/registration", (req,res)=> {
         count += 1;
     }
 
-  /*  if (password.match(/^[A-Za-z0-9]+$/) == null && rePassword.match(/^[A-Za-z0-9]+$/)) {
-        passwordErr.push("Password should only contain numbers and letters.");
-    }*/
-
     if (password.match(/^[A-Za-z]+$/) == null || rePassword.match(/^[0-9]+$/ == null)) {
         passwordErr.push("Password should only contain numbers and letters.");
     }
@@ -117,14 +113,17 @@ router.post("/registration", (req,res)=> {
     }
     else {
         const {firstName,lastName,email} = req.body;
-       /* res.render("dashboard", {
+
+        /* === TO TEST DASHBOARD WITHOUT EMAILS ===
+
+       res.render("dashboard", {
             title: "Dashboard",
             headerInfo: "Dashboard",
             firstName: firstName,
             lastName: lastName,
             email: email,
             success: `Thank you ${firstName} ${lastName}, for joining Plum! We will send you an email shortly to validate your email address.`
-        });*/
+        }); */
 
             // using Twilio SendGrid's v3 Node.js Library
             // https://github.com/sendgrid/sendgrid-nodejs
@@ -183,6 +182,7 @@ router.post("/login",(req,res)=> {
     let emailErr = [];
     let count = 0;
  
+    // VALIDATE EMAIL AND PASSWORD FOR LOG IN
     if (email == "") {
         emailErr += "Email required to log in.";
         count++;
@@ -195,7 +195,7 @@ router.post("/login",(req,res)=> {
         count++;
     }
 
- 
+    // ERRORS FOR VALIDATION
      if (count > 0) {
          res.render("login", {
              email: email,

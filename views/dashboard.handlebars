@@ -1,17 +1,16 @@
 
-<h2><p>{{success}}</p></h2>
+<h2 id = "success"><p>{{success}}</p></h2>
 <div class = "dashboard">
     
-    <div class = "accHist">
+    <div class = "dashItem">
         <h2>Order History</h2>
         
         <p>
             <b>No orders available.</b><br>
-            Orders placed using Guest checkout are not displayed here
         </p>
     </div>
 
-    <div class = "accInfo">
+    <div class = "dashItem">
         <h2>Account Information:</h2>
         <p>
             <b>Name: </b> {{firstName}} {{lastName}}<br>
@@ -19,16 +18,39 @@
             <b>Password: </b> ********<br>
             <b>Phone: </b>Not Specified <br>  
             <b>Language: </b>English <br>
-            <button type = "button">Edit</button>
+            <a href="">Edit account information</a>
         </p>
     </div>
     
-    <div class = "accRewards">
+    <div class = "dashItem">
         <h2>Rewards</h2>
         <p>
             <b>Current Balance:</b> N/A <br>
-            <button type = "button">Points History</button>
+            <a href="">Points history</a>
+        </p>
+    </div>
+
+    <div class = "dashItem">
+        <h2>Payment Options</h2>
+        <p>
+            <a href="">Click here to set up 1-Click Buying</a>
+        </p>
+    </div>
+
+    <div class = "dashItem">
+        <h2>Saved Addresses</h2>
+        <p>
+            <b>No addresses available.</b><br>
+            <a href="">Click here to set up billing address</a>
         </p>
     </div>
     
+    <div class = "dashItem">
+        <h2>Email Alerts</h2>
+        <p>
+            <b>No alerts currently set.</b><br>
+            <a href="">Click here to subscribe to newsletters.</a>
+        </p>
+    </div>
+
 </div>
