@@ -136,8 +136,9 @@ router.post("/registration", (req,res)=> {
             subject: `Registration Confirmation`,
             html: 
             `
-                Hi ${firstName} ${lastName}!
-                Thank you for choosing <b>Plum!</b>
+                Hi ${firstName} ${lastName}! <br>
+                Thank you for choosing <b>Plum!</b> <br>
+                <a href="http://aarellano4web322a2.herokuapp.com/">Click here to validate your email address!</a>
             `,
             };
 
