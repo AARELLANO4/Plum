@@ -8,13 +8,13 @@
                     <div>
                         <label for="email">Email:</label><br>
                         <input type="text" name="email" value = {{email}}><br>
-                        <p>{{emailErr}}</p><br><br>
+                        <div class = "formError"><p>{{emailErr}}</p></div><br><br>
                         
                     </div>
                     <div>
                         <label for="password">Password:</label><br>
                         <input type="password" name="password" id="password" placeholder="At least 8 characters"><br>
-                        <p>{{passwordErr}}</p><br><br>
+                        <div class = "formError"><p>{{passwordErr}}</p></div><br><br>
                         
                     </div>    
                     <input type = "submit" value = "Sign in!">                 

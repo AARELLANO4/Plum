@@ -337,3 +337,8 @@ footer {
     color: #730441;
     text-decoration: none;
 }
+
+.formError {
+    color: #730441;
+    font-weight: bold;
+}

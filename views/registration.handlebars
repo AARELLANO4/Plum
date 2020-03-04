@@ -10,17 +10,17 @@
                     <div>           
                         <label for="firstName">First name: </label><br>
                         <input type="text" id="firstName" name="firstName" value={{firstName}}><br>
-                        <p>{{fnErr}}</p><br><br>
+                        <div class = "formError"><p>{{fnErr}}</p></div><br><br>
                     </div>
                     <div>
                         <label for="lastName">Last name:</label><br>
                         <input type="text" id="lastName" name="lastName" value={{lastName}}><br>
-                        <p>{{lnErr}}</p><br><br>
+                        <div class = "formError"><p>{{lnErr}}</p></div><br><br>
                     </div>
                     <div>
                         <label for="email">Email:</label><br>
                         <input type="text" id="email" name="email" value={{email}}><br>
-                        <p>{{emailErr}}</p><br>
+                        <div class = "formError"><p>{{emailErr}}</p></div><br>
                     </div>
                     <div>
                         <label for="password">Password:</label><br>
@@ -30,7 +30,7 @@
                         <label for="rePassword">Confirm password:</label><br>
                         <input type="password" id = "rePassword" name="rePassword" ><br><br>
                         {{#each passwordErr}}
-                            <p>{{this}}</p><br>
+                            <div class = "formError"><p>{{this}}</p></div><br>
                          {{/each}}
                     </div> 
                     <input type = "submit" value = "Create your Plum account!">
