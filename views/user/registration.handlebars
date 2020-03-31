@@ -6,7 +6,7 @@
 
     </div>
     <div>{{success}}</div>
-    <form action="/registration" method = "POST" >
+    <form action="/user/registration" method = "POST" >
                     <div>           
                         <label for="firstName">First name: </label><br>
                         <input type="text" id="firstName" name="firstName" value={{firstName}}><br>
@@ -27,8 +27,8 @@
                         <input type="password" id="password" name="password" placeholder="At least 6 characters"><br><br>
                     </div>                     
                     <div>
-                        <label for="rePassword">Confirm password:</label><br>
-                        <input type="password" id = "rePassword" name="rePassword" ><br><br>
+                        <label for="cpassword">Confirm password:</label><br>
+                        <input type="password" id = "cpassword" name="cpassword" ><br><br>
                         {{#each passwordErr}}
                             <div class = "formError"><p>{{this}}</p></div><br>
                          {{/each}}
