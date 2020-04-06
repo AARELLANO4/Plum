@@ -189,7 +189,7 @@ router.post("/login",(req,res)=> {
     .then((user)=>{
 
         if (user == null) {
-            errors.push("Email entered is invalid.");
+            errors.push("Your email and/or password is incorrect.");
             res.render("user/login",{
                 errors
             })
@@ -202,7 +202,7 @@ router.post("/login",(req,res)=> {
                     res.redirect("/user/dashboard");
                 }
                 else{
-                    errors.push("Your password is incorrect.");
+                    errors.push("Your email and/or password is incorrect.");
                     res.render("user/login",{
                         email: req.body.email,
                         errors
