@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 const userModel = require("../models/user");
 
 // registration route
@@ -95,23 +96,33 @@ router.post("/registration", (req,res)=> {
     
         const user = new userModel(newUser);
     
-        user.save()
-        .then(()=>{
-            res.redirect("/user/profile")
+        const regError = [];
+        userModel.findOne({email:req.body.email})
+        .then((dbuser)=>{
+            if (dbuser == null){
+                user.save()
+                .then(()=>{
+                    req.session.userInfo = user;
+                    res.redirect("/user/dashboard");
+                })
+                .catch(err=>console.log(`Error when registering new user: ${err}`));
+            }
+            else {
+                emailErr.push("This email has already been registered.")
+                res.render("user/registration",{
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    email: req.body.email,
+                    fnErr: fnErr,
+                    lnErr: lnErr,
+                    emailErr: emailErr,
+                    passwordErr: passwordErr,
+                    emailErr
+                })
+            }
         })
         .catch(err=>console.log(`Error when registering new user: ${err}`));
-    
-         /* === TO TEST DASHBOARD WITHOUT EMAILS ===
- 
-        res.render("dashboard", {
-             title: "Dashboard",
-             headerInfo: "Dashboard",
-             firstName: firstName,
-             lastName: lastName,
-             email: email,
-             success: `Thank you ${firstName} ${lastName}, for joining Plum! We will send you an email shortly to validate your email address.`
-         }); 
-         */
+       
          /*
              // using Twilio SendGrid's v3 Node.js Library
              // https://github.com/sendgrid/sendgrid-nodejs
@@ -150,15 +161,13 @@ router.post("/registration", (req,res)=> {
           
  });
 
-router.get("/dashboard",(req,res)=>{
-    res.render("dashboard");
-})
+
 
 
  // login route
 router.get("/login",(req,res)=>{
     // login page
-    res.render("login",{
+    res.render("user/login",{
 
         // main.handleBars
         title: "Log-in",
@@ -166,40 +175,53 @@ router.get("/login",(req,res)=>{
     });
 });
 
+router.get("/dashboard",(req,res)=>{
+
+    res.render("user/dashboard");
+
+});
+
 router.post("/login",(req,res)=> {
 
-    const {email,password} = req.body;
- 
-    let emailErr = [];
-    let count = 0;
- 
-    // VALIDATE EMAIL AND PASSWORD FOR LOG IN
-    if (email == "") {
-        emailErr += "Email required to log in.";
-        count++;
-    }
+    const errors =[];
 
-    let passwordErr = [];
+    userModel.findOne({email: req.body.email})
+    .then((user)=>{
 
-    if (password == "") {
-        passwordErr += "Password required to log in.";
-        count++;
-    }
+        if (user == null) {
+            errors.push("Email entered is invalid.");
+            res.render("user/login",{
+                errors
+            })
+        }
+        else {
+            bcrypt.compare(req.body.password, user.password)
+            .then((isMatched)=>{
+                if (isMatched == true) {
+                    req.session.userInfo = user;
+                    res.redirect("/user/dashboard");
+                }
+                else{
+                    errors.push("Your password is incorrect.");
+                    res.render("user/login",{
+                        email: req.body.email,
+                        errors
+                    })
+                }
 
-    // ERRORS FOR VALIDATION
-     if (count > 0) {
-         res.render("login", {
-             email: email,
-             emailErr: emailErr,
-             passwordErr: passwordErr
-         });
-     }
-     else {
-         const {email,password} = req.body;
-         res.render("dashboard", {
-             success: `Welcome back!`
-         });
-     }
+            })
+            .catch(err=>console.log(`Error: ${err}`));
+        }
+
+    })
+    .catch(err=>console.log(`Error: ${err}`));
+
+ });
+
+ router.get("/logout",(req,res)=>{
+    req.session.destroy();
+    res.redirect("/user/login");
+
  });
 
  module.exports = router;

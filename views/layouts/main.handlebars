@@ -19,8 +19,13 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/products">Product Listing</a></li>
-                <li><a href="/user/registration">Registration</a></li>
-                <li><a href="/user/login">Log-In</a></li>
+                {{#if user}}
+                    <li><a href="/user/dashboard">{{user.firstName}} {{user.lastName}} Dashboard</a></li>
+                    <li><a href="/user/logout">Log Out </a></li> 
+                {{else}}
+                    <li><a href="/user/registration">Registration</a></li>
+                    <li><a href="/user/login">Log-In</a></li>
+                {{/if}}
             </ul>
         </nav>
     </header>

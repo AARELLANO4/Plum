@@ -2,6 +2,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 // load env variable file
 require('dotenv').config({path:"./config/keys.env"})
@@ -18,9 +19,19 @@ app.use(express.static("public"));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
+// session middleware
+app.use(session({secret: `${process.env.SECRET}`}));
+
 // load controllers
 const generalController = require("./controllers/general");
 const userRoutes = require("./controllers/user");
+
+app.use((req,res,next)=>{
+    // create global template variable
+    res.locals.user = req.session.userInfo;
+
+    next();
+})
 
 
 // MAPs router objects

@@ -1,5 +1,5 @@
 
-<h2 id = "success"><p>{{success}}</p></h2>
+<h2 id = "success"><p>Welcome, {{user.firstName}} {{user.lastName}}!</p></h2>
 <div class = "dashboard">
     
     <div class = "dashItem">
@@ -13,8 +13,8 @@
     <div class = "dashItem">
         <h2>Account Information:</h2>
         <p>
-            <b>Name: </b> {{firstName}} {{lastName}}<br>
-            <b>Email: </b> {{email}}<br>
+            <b>Name: </b> {{user.firstName}} {{lastName}}<br>
+            <b>Email: </b> {{user.email}}<br>
             <b>Password: </b> ********<br>
             <b>Phone: </b>Not Specified <br>  
             <b>Language: </b>English <br>

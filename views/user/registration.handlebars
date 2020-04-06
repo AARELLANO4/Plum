@@ -20,7 +20,8 @@
                     <div>
                         <label for="email">Email:</label><br>
                         <input type="text" id="email" name="email" value={{email}}><br>
-                        <div class = "formError"><p>{{emailErr}}</p></div><br>
+                        <div class = "formError"><p>{{emailErr}}{{#each errors}}{{this}}{{/each}}</p></div><br>
+                        
                     </div>
                     <div>
                         <label for="password">Password:</label><br>
