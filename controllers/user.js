@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const userModel = require("../models/user");
+const isAuthenticated = require("../middleware/auth");
+const generateDB = require("../middleware/authorization")
 
 // registration route
 router.get("/registration",(req,res)=>{
@@ -175,12 +177,6 @@ router.get("/login",(req,res)=>{
     });
 });
 
-router.get("/dashboard",(req,res)=>{
-
-    res.render("user/dashboard");
-
-});
-
 router.post("/login",(req,res)=> {
 
     const errors =[];
@@ -217,6 +213,10 @@ router.post("/login",(req,res)=> {
     .catch(err=>console.log(`Error: ${err}`));
 
  });
+
+ // PROTECTED PAGES:
+
+ router.get("/dashboard",isAuthenticated,generateDB);
 
  router.get("/logout",(req,res)=>{
     req.session.destroy();
