@@ -3,37 +3,39 @@
 <div class = "dashboard">
     
     <div class = "dashItem">
-        <h2>Order History</h2>
-        
-        <p>
-            <b>No orders available.</b><br>
-        </p>
-    </div>
-
-    <div class = "dashItem">
         <h2>Account Information:</h2>
         <p>
-            <b>Name: </b> {{user.firstName}} {{lastName}}<br>
+            <b>Name: </b> {{user.firstName}} {{user.lastName}}<br>
             <b>Email: </b> {{user.email}}<br>
             <b>Password: </b> ********<br>
             <b>Phone: </b>Not Specified <br>  
             <b>Language: </b>English <br>
+            <b>Account Type:</b> {{user.type}} <br>
             <a href="">Edit account information</a>
-        </p>
-    </div>
-    
-    <div class = "dashItem">
-        <h2>Rewards</h2>
-        <p>
-            <b>Current Balance:</b> N/A <br>
-            <a href="">Points history</a>
         </p>
     </div>
 
     <div class = "dashItem">
-        <h2>Payment Options</h2>
+        <h2>Inventory Options:</h2>
         <p>
-            <a href="">Click here to set up 1-Click Buying</a>
+            <a href="/product/addInventory">Add Products</a><br>
+            <a href="/product/inventoryList">View Products</a>
+
+        </p>
+    </div>
+    
+    <div class = "dashItem">
+        <h2>Email Alerts</h2>
+        <p>
+            <b>No alerts currently set.</b><br>
+            <a href="">Subscribe to PlumWork updates.</a>
+        </p>
+    </div>
+
+    <div class = "dashItem">
+        <h2>Fill Online Orders</h2>
+        <p>
+            <a href="">Click here to fill online orders.</a>
         </p>
     </div>
 
@@ -46,11 +48,7 @@
     </div>
     
     <div class = "dashItem">
-        <h2>Email Alerts</h2>
-        <p>
-            <b>No alerts currently set.</b><br>
-            <a href="">Click here to subscribe to newsletters.</a>
-        </p>
+
     </div>
 
 </div>

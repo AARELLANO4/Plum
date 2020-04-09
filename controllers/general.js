@@ -1,44 +1,50 @@
 
 const express = require('express')
 const router = express.Router();
-
+const productModel = require("../models/productDB");
 
 const categoryModel = require("../models/category");
 const bestSellModel = require("../models/bestsellers");
-const productsModel = require("../models/products");
+
 
 // home route
 router.get("/",(req,res) =>{
     // home page
 
-    res.render("home",{
+    productModel.find()
+    .then((products)=>{
+        const filteredProduct = products.map(product=>{
+            return {
+                id: product._id,
+                prodName: product.prodName,
+                prodPrice: product.prodPrice,
+                prodDetails: product.prodDetails,
+                prodCategory: product.prodCategory,
+                prodQuantity: product.prodQuantity,
+                prodBestSeller: product.prodBestSeller,
+                prodPic: product.prodPic
+    
+            }
 
-        // main.handleBars
-        title: "Home",
-        headerInfo: "Plum",
-        category: categoryModel.getAllCategories(),
-        bestSellers: bestSellModel.getBestSell()
-    });
+        });
+
+        res.render("home",{
+            title: "Home",
+            headerInfo: "Plum",
+            category: categoryModel.getAllCategories(),
+            bestSellers: filteredProduct
+        });
+    })
+    .catch(err=>console.log(`Error when fetching data: ${err}`));
+    // res.render("home",{
+
+    //     // main.handleBars
+    //     title: "Home",
+    //     headerInfo: "Plum",
+    //     category: categoryModel.getAllCategories(),
+    //     bestSellers: bestSellModel.getBestSell()
+    // });
 
 });
-
-// products route
-router.get("/products",(req,res) =>{
-    // products page
-    res.render("products",{
-
-        // main.handleBars
-        title: "Products",
-        headerInfo: "Products",
-        products: productsModel.getAllProducts()
-
-    });
-
-
-});
-
-
-
-
 
 module.exports = router;

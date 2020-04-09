@@ -1,0 +1,58 @@
+
+<div class = "productPage">
+    <div class = "menu">
+        
+        <div>
+            <form method = "POST" action="/product/products">
+                <h2 class = "menu1"> Categories: </h2><br><br>
+                <select name="prodCategory" id="prodCategory">
+                    <option value="Books">Books</option>
+                    <option value="Video Games">Video Games</option>
+                    <option value="TV Shows">TV Shows and Movies</option>
+                    <option value="Smart Home">Smart Home</option> 
+                    <option value="Electronics">Electronics</option>
+                    <option value="Health">Health and Beauty</option>
+                    <option value="Stationery">Stationery</option>
+                    <option value="Home">Home and Garden</option> 
+                </select><br><br>
+                <input class = "submitCat" type="submit" value = "Search Category">
+            </form>
+        </div>
+
+        <div>
+            <h2 class = "menu1">Menu</h2><br>
+
+            <ul>
+                <li><a href="">New</a></li>
+                <li><a href="">Discover</a></li>
+                <li><a href="">Bestsellers</a></li>
+                <li><a href="">Deals</a></li>
+            </ul>
+        </div>
+        
+    </div>
+
+   {{!-- <select id="prodCategory" name="prodCategory">
+                            <option value="Books">Books</option>
+                            <option value="Video Games">Video Games</option>
+                            <option value="TV Shows">TV Shows</option>
+                            <option value="Smart Home">Smart Home</option> 
+                            <option value="Electronics">Electronics</option>
+                            <option value="Health">Health and Beauty</option>
+                            <option value="Stationery">Stationery</option>
+                            <option value="Home">Home and Garden</option>       
+                        </select><br><br> --}}
+
+    <div class = "products">
+        {{#each products}}
+            <div class = "item">
+                <img id = "productImage" max-height="300px" src="/uploads/{{this.prodPic}}" alt="productImage">
+                <p class = "prodName">{{this.prodName}}</p>
+                <p class = "prodDetails">{{this.prodDetails}}</p>
+                <p class = "prodPrice">${{this.prodPrice}}</p>
+                <p class = "prodCategory"><a href="">{{this.prodCategory}}</a></p>
+            </div>
+        {{/each}}
+     </div>
+    
+</div>

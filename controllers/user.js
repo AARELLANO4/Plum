@@ -3,7 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const userModel = require("../models/user");
 const isAuthenticated = require("../middleware/auth");
-const generateDB = require("../middleware/authorization")
+const generateDB = require("../middleware/authorization");
+//const ICauth = require("../middleware/ICauth");
 
 // registration route
 router.get("/registration",(req,res)=>{

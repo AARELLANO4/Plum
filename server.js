@@ -3,6 +3,8 @@ const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
+
 
 // load env variable file
 require('dotenv').config({path:"./config/keys.env"})
@@ -25,6 +27,7 @@ app.use(session({secret: `${process.env.SECRET}`}));
 // load controllers
 const generalController = require("./controllers/general");
 const userRoutes = require("./controllers/user");
+const productRoutes = require("./controllers/product")
 
 app.use((req,res,next)=>{
     // create global template variable
@@ -33,10 +36,26 @@ app.use((req,res,next)=>{
     next();
 })
 
+app.use((req,res,next)=>{
+    if(req.query.method=="PUT")
+    {
+        req.method="PUT";
+    }
+    else if(req.query.method=="DELETE")
+    {
+        req.method="DELETE"
+    }
+
+    next();
+})
+
+app.use(fileUpload());
+
 
 // MAPs router objects
 app.use("/",generalController);
 app.use("/user",userRoutes);
+app.use("/product",productRoutes); 
 
 // set up server
 const PORT = process.env.PORT;

@@ -25,14 +25,16 @@
 
         <div class = "grid-bestSeller">
 
- 
             {{#each bestSellers}}
+            {{#if this.prodBestSeller}}
                 <div class = "item">    
-                    <img id = "catImg" src="{{this.image}}" alt="Category Images">
-                    <h3>{{this.price}}</h3>
-                    <p class="HMBsDesc">{{this.description}}</p>
+                    <img id = "catImg" src="/uploads/{{this.prodPic}}" alt="Category Images">
+                    <h3>${{this.prodPrice}}</h3>
+                    <p class="HMBsDesc">{{this.prodName}}</p>
             </div>    
+            {{/if}}
             {{/each}}
+
             
         </div>
 </div>

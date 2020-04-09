@@ -94,7 +94,15 @@
     
     
     /* REGISTRATION FORM FONT SIZE */ 
-    input[type=text], input[type=password], input[type=submit]{
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+        resize: vertical;
+        font-size: 1vw;
+     }
+
+     .regForm > form > input[type=submit], .logForm > form > input[type=submit]{
         width: 100%;
         padding: 12px;
         box-sizing: border-box;
@@ -136,7 +144,7 @@
     .products {
         display: inline-grid;
         grid-template-columns: repeat(3, minmax(25%, 1fr));
-        grid-template-rows: repeat(2, minmax(25%, 1fr));
+        
         grid-gap: 0.5rem;
         justify-content: center;
         margin: 10% 5%;
@@ -191,4 +199,12 @@
         margin-left: 10%;
     }
 
+    input[type=submit] {
+        justify-self: center;
+        width: 100%;
+        padding: 5%;
+        font-size: 1vw;
+        text-align: center;
     }
+
+}
