@@ -72,6 +72,14 @@ router.get("/addInventory",isIC,(req,res)=>{
 
 router.post("/addInventory",(req,res)=>{
 
+    let picErr = [];
+    let nameErr = [];
+    let priceErr = [];
+    let detailErr = [];
+    let quantityErr = [];
+
+    let count = 0;
+
     const newProduct = {
         prodName: req.body.prodName,
         prodPrice: req.body.prodPrice,
@@ -81,29 +89,75 @@ router.post("/addInventory",(req,res)=>{
         prodBestSeller: req.body.prodBestSeller
     }
 
-    const product = new productModel(newProduct);
+    console.log(req.files.prodPic.mimetype);
+    if (req.files.prodPic.mimetype != "image/png") {
+        picErr += "File MUST be an image format.";
+        count += 1;
+    }
 
-    product.save()
-    .then((product)=>{
-        //res.redirect("/product/products");
-        console.log(`============ FIND ${req.files.prodPic.mimetype}`);
-        req.files.prodPic.name = `prodPic_${product._id}${path.parse(req.files.prodPic.name).ext}`;
-        
-        req.files.prodPic.mv(`public/uploads/${req.files.prodPic.name}`)
+    if (newProduct.prodName == "") {
+        nameErr += "Product Name must be entered.";
+        count += 1;
+    }
 
-        
-        .then(()=>{
-            productModel.updateOne({_id:product._id},{
-                prodPic: req.files.prodPic.name
-            })
-            .then(()=>{
-                res.redirect(`/product/inventoryList`)
-            })
+    if (newProduct.prodPrice <= 0) {
+        priceErr += "Product Price cannot be zero.";
+        count += 1;
+    }
+
+    if (newProduct.prodDetails == "") {
+        detailErr += "Product Details must be entered.";
+        count += 1;
+    }
+
+    if (newProduct.prodQuantity < 0) {
+        quantityErr += "Product Quantity cannot be less than zero.";
+        count += 1;
+    }
+
+    if (count > 0) {
+        res.render("inventory/inventoryForm",{
+            prodName: req.body.prodName,
+            prodDetails: req.body.prodDetails,
+            prodCategory: req.body.prodCategory,
+            picErr: picErr,
+            nameErr: nameErr,
+            priceErr: priceErr,
+            detailErr: detailErr,
+            quantityErr: quantityErr
         })
+    }
 
-    })
-    .catch(err=>console.log(`Error on inserting into database: ${err}`));
+    else {
+        const newProduct = {
+            prodName: req.body.prodName,
+            prodPrice: req.body.prodPrice,
+            prodDetails: req.body.prodDetails,
+            prodCategory: req.body.prodCategory,
+            prodQuantity: req.body.prodQuantity,
+            prodBestSeller: req.body.prodBestSeller
+        }
 
+        const product = new productModel(newProduct);
+    
+        product.save()
+        .then((product)=>{
+            req.files.prodPic.name = `prodPic_${product._id}${path.parse(req.files.prodPic.name).ext}`;
+                req.files.prodPic.mv(`public/uploads/${req.files.prodPic.name}`)
+
+                .then(()=>{
+                    productModel.updateOne({_id:product._id},{
+                        prodPic: req.files.prodPic.name
+                    })
+                    .then(()=>{
+                        res.redirect(`/product/inventoryList`)
+                    })
+                })
+
+        })
+        .catch(err=>console.log(`Error on inserting into database: ${err}`));
+
+    }
 });
 
 router.get("/inventoryList",isIC,(req,res)=>{

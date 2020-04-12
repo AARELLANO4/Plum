@@ -99,7 +99,6 @@ router.post("/registration", (req,res)=> {
     
         const user = new userModel(newUser);
     
-        const regError = [];
         userModel.findOne({email:req.body.email})
         .then((dbuser)=>{
             if (dbuser == null){
