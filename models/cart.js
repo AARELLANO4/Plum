@@ -25,4 +25,10 @@ module.exports = function Cart(oldCart) {
         }
         return arr;
     }
+
+    this.empty = function () {
+        this.items = {};
+        this.totalQty = 0;
+        this.totalPrice = 0;
+    }
 };

@@ -1,17 +1,39 @@
 
-<div class = "productDesc">
+<div class = "inventoryList">
 {{#if products}}
-    {{#each products}}
-        <p>Product: {{this.item.prodName}}</p><br>
-        <p>Price: {{this.prodPrice}}</p><br>
-        <p>Quantity: {{this.qty}}</p><br>
+   
+    <table>
+        <thead>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </thead>
+         {{#each products}}
+        <tbody>
+            <tr>
+                <td>{{this.item.prodName}}</td>
+                <td>${{this.prodPrice}}</td>
+                <td>{{this.qty}}</td>
+            </tr>
+        </tbody>
+        {{/each}}
         
-    {{/each}}
-        <p>Subtotal: {{this.subTotal}}</p>
-        <p>HST (13%): {{this.HST}}</p>
-        <p>Total: {{this.total}}</p><br>
+        <tfoot>
+            <tr>
+                <td colspan = "3" style="text-align:center;">Subtotal: ${{this.subTotal}}</td>
+            </tr>
+            <tr>
+                <td colspan = "3" style="text-align:center;">HST (13%): ${{this.HST}}</td>
+            </tr>
+            <tr>
+                <td colspan = "3" style="text-align:center;">Total: ${{this.total}}</td>
+            </tr>
+        </tfoot>
+    </table>
+<a href="/product/check-out">Place Your Order!</a>
 {{else}}
 <h2> There are no items in your carts. </h2>
 {{/if}}
+
 
 </div>

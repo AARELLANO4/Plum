@@ -89,7 +89,7 @@ router.post("/addInventory",(req,res)=>{
 
     console.log(req.files.prodPic.mimetype);
     if (req.files.prodPic.mimetype != "image/png") {
-        picErr += "File MUST be an image format.";
+        picErr += "File MUST be .png format.";
         count += 1;
     }
 
@@ -278,5 +278,44 @@ router.get("/shopping-cart",(req,res)=>{
         total: total
     })
 })
+
+router.get("/check-out",(req,res)=>{
+
+             // using Twilio SendGrid's v3 Node.js Library
+             // https://github.com/sendgrid/sendgrid-nodejs
+             const sgMail = require('@sendgrid/mail');
+             sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+             
+             const msg = {
+             to: `${req.session.userInfo.email}`,
+             from: `aarellano4@myseneca.ca`,
+             subject: `Registration Confirmation`,
+             html: 
+             `
+                 Hi ${req.session.userInfo.firstName} ${req.session.userInfo.lastName}! <br>
+                 Thank you for choosing <b>Plum!</b> <br>
+                 <a href="http://aarellano4web322a2.herokuapp.com/">Click here to validate your email address!</a>
+             `,
+             };
+ 
+             // asynchronous operation 
+             sgMail.send(msg)
+             .then(()=> {
+                 req.session.cart = null;
+                 sucess = `Order placed! An email has been sent for confirmation.`
+                 res.render("user/dashboard", {
+                     sucess: sucess
+                 });
+             })
+             .catch(err=>{
+                 console.log(`Error ${err}`);
+             })
+
+    req.session.cart = null;
+    success = `Order placed! An email has been sent for confirmation.`
+    res.render("user/dashboard", {
+        success: success
+    });
+ });
 
 module.exports = router;
