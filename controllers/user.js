@@ -96,6 +96,39 @@ router.post("/registration", (req,res)=> {
             email:req.body.email,
             password:req.body.password
         }
+
+                     // using Twilio SendGrid's v3 Node.js Library
+             // https://github.com/sendgrid/sendgrid-nodejs
+             const sgMail = require('@sendgrid/mail');
+             sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+             
+             const msg = {
+             to: `${newUser.email}`,
+             from: `aarellano4@myseneca.ca`,
+             subject: `Registration Confirmation`,
+             html: 
+             `
+                 Hi ${newUser.firstName} ${newUser.lastName}! <br>
+                 Thank you for choosing <b>Plum!</b> <br>
+                 <a href="http://aarellano4web322a2.herokuapp.com/">Click here to validate your email address!</a>
+             `,
+             };
+ 
+             // asynchronous operation 
+             sgMail.send(msg)
+             .then(()=> {
+                 res.render("dashboard", {
+                     title: "Dashboard",
+                     headerInfo: "Dashboard",
+                     firstName: firstName,
+                     lastName: lastName,
+                     email: email,
+                     success: `Thank you ${firstName} ${lastName}, for joining Plum! We will send you an email shortly to validate your email address.`
+                 });
+             })
+             .catch(err=>{
+                 console.log(`Error ${err}`);
+             })
     
         const user = new userModel(newUser);
     
@@ -124,41 +157,7 @@ router.post("/registration", (req,res)=> {
             }
         })
         .catch(err=>console.log(`Error when registering new user: ${err}`));
-       
-         /*
-             // using Twilio SendGrid's v3 Node.js Library
-             // https://github.com/sendgrid/sendgrid-nodejs
-             const sgMail = require('@sendgrid/mail');
-             sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
              
-             const msg = {
-             to: `${email}`,
-             from: `aarellano4@myseneca.ca`,
-             subject: `Registration Confirmation`,
-             html: 
-             `
-                 Hi ${firstName} ${lastName}! <br>
-                 Thank you for choosing <b>Plum!</b> <br>
-                 <a href="http://aarellano4web322a2.herokuapp.com/">Click here to validate your email address!</a>
-             `,
-             };
- 
-             // asynchronous operation 
-             sgMail.send(msg)
-             .then(()=> {
-                 res.render("dashboard", {
-                     title: "Dashboard",
-                     headerInfo: "Dashboard",
-                     firstName: firstName,
-                     lastName: lastName,
-                     email: email,
-                     success: `Thank you ${firstName} ${lastName}, for joining Plum! We will send you an email shortly to validate your email address.`
-                 });
-             })
-             .catch(err=>{
-                 console.log(`Error ${err}`);
-             })
-             */
      }
           
  });
