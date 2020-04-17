@@ -32,12 +32,6 @@ router.get("/products",(req,res) =>{
     })
     .catch(err=>console.log(`Error when fetching data: ${err}`));
 
-    // res.render("inventory/products",{
-    //     title:"Products",
-    //     headerInfo: "Products",
-    //     products: productsModel.getAllProducts()
-    // })
-
 });
 
 router.post("/products",(req,res)=>{
@@ -280,34 +274,37 @@ router.get("/shopping-cart",(req,res)=>{
 
 router.get("/check-out",(req,res)=>{
 
-             // using Twilio SendGrid's v3 Node.js Library
-             // https://github.com/sendgrid/sendgrid-nodejs
+    // using Twilio SendGrid's v3 Node.js Library
+    // https://github.com/sendgrid/sendgrid-nodejs
+    let cart = new cartModel(req.session.cart);
+    let emailmsg = cart.emailOrder();
+    let emailStr = emailmsg.toString();
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+    
+    const msg = {
+    to: `${req.session.userInfo.email}`,
+    from: `aarellano4@myseneca.ca`,
+    subject: `Order Confirmation`,
+    html: `
+    Thanks for placing your order at Plum! <br>
+    ${emailStr}
+    
+    `
+    };
 
-             const sgMail = require('@sendgrid/mail');
-             sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-             
-             const msg = {
-             to: `${req.session.userInfo.email}`,
-             from: `aarellano4@myseneca.ca`,
-             subject: `Order Confirmation`,
-             HTML: 
-             `
-                Thank you for ordering with Plum!
-             `,
-             };
- 
-             // asynchronous operation 
-             sgMail.send(msg)
-             .then(()=> {
-                 req.session.cart = null;
-                 sucess = `Order placed! An email has been sent for confirmation.`
-                 res.render("user/dashboard", {
-                     sucess: sucess
-                 });
-             })
-             .catch(err=>{
-                 console.log(`Error ${err}`);
-             })
+    // asynchronous operation 
+    sgMail.send(msg)
+    .then(()=> {
+        req.session.cart = null;
+        sucess = `Order placed! An email has been sent for confirmation.`
+        res.render("user/dashboard", {
+            sucess: sucess
+        });
+    })
+    .catch(err=>{
+        console.log(`Error ${err}`);
+    })
 
     req.session.cart = null;
     success = `Order placed! An email has been sent for confirmation.`

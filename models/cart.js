@@ -26,9 +26,18 @@ module.exports = function Cart(oldCart) {
         return arr;
     }
 
-    this.empty = function () {
-        this.items = {};
-        this.totalQty = 0;
-        this.totalPrice = 0;
+    this.emailOrder = function () {
+        let email = "";
+
+        if (this.totalPrice != 0) {
+            email += `Shipment details: <br>`;
+        
+            for (let id in this.items) {
+                email +=  `${this.items[id].item.prodName} : ${this.items[id].qty} x $${this.items[id].prodPrice} <br>`
+            }
+            email += `SubTotal: $${this.totalPrice}`
+        }
+
+        return email;
     }
 };

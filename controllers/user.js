@@ -88,8 +88,6 @@ router.post("/registration", (req,res)=> {
          });
      }
      else {
-         //const {firstName,lastName,email} = req.body;
- 
          const newUser = {
             firstName: req.body.firstName,
             lastName:req.body.lastName,
@@ -97,7 +95,7 @@ router.post("/registration", (req,res)=> {
             password:req.body.password
         }
 
-                     // using Twilio SendGrid's v3 Node.js Library
+            // using Twilio SendGrid's v3 Node.js Library
              // https://github.com/sendgrid/sendgrid-nodejs
              const sgMail = require('@sendgrid/mail');
              sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
