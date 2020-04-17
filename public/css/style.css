@@ -167,7 +167,7 @@ input[type=text], input[type=password], input[type=number]{
     padding: 12px;
     box-sizing: border-box;
     resize: vertical;
-    font-size: 3vw;
+    font-size: 20px;
  }
 
  .regForm > form > input[type=submit], .logForm > form > input[type=submit]{
@@ -175,7 +175,7 @@ input[type=text], input[type=password], input[type=number]{
     padding: 12px;
     box-sizing: border-box;
     resize: vertical;
-    font-size: 1vw;
+    font-size: 14px;
  }
 
  label {
@@ -286,14 +286,20 @@ input[type=text], input[type=password], input[type=number]{
     margin: 10% 5%;
 }
 
-.products > .item > p > a {
+.products > .item > a {
 
-    font-size: 3vw;
+    font-size: 16px;
     color: #89A8C0;
     text-decoration: none;
     text-align: left;
 }
 
+.products > .item > p > a {
+    font-size: 16px;
+    color: #89A8C0;
+    text-decoration: none;
+    text-align: left;
+}
 
 footer {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -353,8 +359,28 @@ footer {
 
 input[type=submit] {
     justify-self: center;
-    width: 100%;
+    width: 100px;
     padding: 5%;
-    font-size: 1vw;
+    font-size: 10px;
     text-align: center;
+}
+
+.productPage > .menu > div > form > select {
+    max-width: 100px;
+}
+
+.productDesc > div > .prodCatSelect > input[type=number] {
+    max-width: 100px;
+    resize: vertical;
+    padding: 5px;
+}
+
+.prodDesc {
+    margin: 15%;
+}
+
+.inventoryList {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 0px;
+    margin-right: 0px;
 }

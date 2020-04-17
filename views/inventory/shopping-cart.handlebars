@@ -1,0 +1,17 @@
+
+<div class = "productDesc">
+{{#if products}}
+    {{#each products}}
+        <p>Product: {{this.item.prodName}}</p><br>
+        <p>Price: {{this.prodPrice}}</p><br>
+        <p>Quantity: {{this.qty}}</p><br>
+        
+    {{/each}}
+        <p>Subtotal: {{this.subTotal}}</p>
+        <p>HST (13%): {{this.HST}}</p>
+        <p>Total: {{this.total}}</p><br>
+{{else}}
+<h2> There are no items in your carts. </h2>
+{{/if}}
+
+</div>

@@ -1,45 +1,45 @@
-<div class = "dashboard">
+<div class = "inventoryList">
     
-<h2>Inventory List</h2><br>
+    <h2>Inventory List</h2><br>
 
-<table>
-    <thead>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Details</th>
-        <th>Category</th>
-        <th>Quantity</th>
-        <th>Operation</th>
-    </thead>
-    <tbody>
-        {{#each data}}
-        <tr>
-            <td>
-                <span>{{this.prodName}}</span>
-            </td>
-            <td style="text-align: center;">
-                <span>${{this.prodPrice}}</span>
-            </td>
-            <td>
-                <span>{{this.prodDetails}}</span>
-            </td>
-            <td>
-                <span>{{this.prodCategory}}</span>
-            </td>
-            <td style="text-align: center;">
-                <span>{{this.prodQuantity}}</span>
-            </td>
-            <td>
-                <a href="/product/edit/{{this.id}}">EDIT</a> | <a href="/product/delete/{{this.id}}?method=DELETE">DELETE</a>
-            </td>
-        </tr>
-        {{else}}
-        <td colspan="6" style="text-align: center;">There is no inventory.</td>
-        {{/each}}
-    </tbody>
-    <tfoot>
-        <td colspan ="6" style="text-align: center;"><a href="/product/addInventory">Add more inventory.</a></td>
-    </tfoot>
-</table>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Details</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Operation</th>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td>
+                    <span>{{this.prodName}}</span>
+                </td>
+                <td style="text-align: center;">
+                    <span>${{this.prodPrice}}</span>
+                </td>
+                <td>
+                    <span>{{this.prodDetails}}</span>
+                </td>
+                <td>
+                    <span>{{this.prodCategory}}</span>
+                </td>
+                <td style="text-align: center;">
+                    <span>{{this.prodQuantity}}</span>
+                </td>
+                <td>
+                    <a href="/product/edit/{{this.id}}">EDIT</a> | <a href="/product/delete/{{this.id}}?method=DELETE">DELETE</a>
+                </td>
+            </tr>
+            {{else}}
+            <td colspan="6" style="text-align: center;">There is no inventory.</td>
+            {{/each}}
+        </tbody>
+        <tfoot>
+            <td colspan ="6" style="text-align: center;"><a href="/product/addInventory">Add more inventory.</a></td>
+        </tfoot>
+    </table>
 
 </div>

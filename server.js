@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const fileUpload = require('express-fileupload');
-
+const mongoStore = require('connect-mongo')(session);
 
 // load env variable file
 require('dotenv').config({path:"./config/keys.env"})
@@ -22,7 +22,12 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // session middleware
-app.use(session({secret: `${process.env.SECRET}`}));
+app.use(session({
+    secret: `${process.env.SECRET}`,
+    store: new mongoStore({mongooseConnection: mongoose.connection}),
+    cookie: { maxAge: 180 * 60 * 1000 } // 3hrs
+}));
+
 
 // load controllers
 const generalController = require("./controllers/general");
@@ -31,8 +36,9 @@ const productRoutes = require("./controllers/product")
 
 app.use((req,res,next)=>{
     // create global template variable
+    res.locals.session = req.session;
     res.locals.user = req.session.userInfo;
-
+    
     next();
 })
 

@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-//const isAuthenticated = require("../middleware/auth");
+const isAuthenticated = require("../middleware/auth");
 const isIC = require("../middleware/ICauth");
 const path = require("path");
 
-
-const productsModel = require("../models/products");
 const productModel = require("../models/productDB");
-
+const cartModel = require("../models/cart")
 
 // products route
 router.get("/products",(req,res) =>{
@@ -224,6 +222,61 @@ router.delete("/delete/:id",(req,res)=>{
     })
     .catch(err=>console.log(`Error when deleting data from database: ${err}`))
 
+})
+
+router.get("/list/:id",(req,res)=>{
+
+    productModel.findById(req.params.id)
+    .then((product)=>{
+        const {_id,prodName,prodPrice,prodDetails,prodCategory,prodQuantity,prodPic} = product;
+
+        res.render("inventory/prodDesc",{
+            _id,
+            prodName,
+            prodPrice,
+            prodDetails,
+            prodCategory,
+            prodQuantity,
+            prodPic
+        })
+    })
+    .catch(err=>console.log(`Error when finding document id: ${err}`))
+
+}) 
+
+router.get("/add-to-cart/:id",isAuthenticated, (req,res)=>{
+    //const product_id = req.params.id;
+    let cart = new cartModel (req.session.cart ? req.session.cart : {});
+
+    productModel.findById(req.params.id)
+    .then((product)=>{
+        cart.add(product,product.id);
+        req.session.cart = cart;
+        console.log(req.session.cart);
+        res.redirect('/product/products');
+    })
+    .catch(err=>console.log(`Error when adding to cart: ${err}`));
+})
+
+router.get("/shopping-cart",(req,res)=>{
+    if (!req.session.cart) {
+        return res.render('inventory/shopping-cart', {products: null});
+    }
+    let cart = new cartModel(req.session.cart);
+
+    let st = cart.totalPrice;
+    let subTotal = st.toFixed(2);
+    let h = (subTotal * 0.13);
+    let HST = h.toFixed(2);
+    let t = st + h;
+    let total = t.toFixed(2);
+
+    res.render('inventory/shopping-cart',{
+        products: cart.generateArray(),
+        subTotal: subTotal,
+        HST: HST,
+        total: total
+    })
 })
 
 module.exports = router;

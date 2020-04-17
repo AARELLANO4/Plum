@@ -4,7 +4,6 @@ const router = express.Router();
 const productModel = require("../models/productDB");
 
 const categoryModel = require("../models/category");
-const bestSellModel = require("../models/bestsellers");
 
 
 // home route
